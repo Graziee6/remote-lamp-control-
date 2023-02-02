@@ -8,14 +8,7 @@ void setup() {
   Serial.begin(9600);
 }
 
-void loop() {
-  digitalWrite(RELAY_PIN, LOW);
-  checkBrightness();
-  delay(1000);
-  
-  digitalWrite(RELAY_PIN, HIGH);
-  checkBrightness();
-  delay(1000);
+void loop() {  
 }
 
 void checkBrightness(){
@@ -32,4 +25,16 @@ void checkBrightness(){
   Serial.print("Analog reading: ");
   Serial.println(brightnessValue);
   delay(10000);
- }
+}
+
+void turnOn(){
+  digitalWrite(RELAY_PIN, LOW);
+  checkBrightness();
+  delay(1000);
+}
+
+void turnOff(){
+  digitalWrite(RELAY_PIN, HIGH);
+  checkBrightness();
+  delay(1000);
+}
