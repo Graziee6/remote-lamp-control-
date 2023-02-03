@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
     <title>Lamp Project</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -25,61 +26,41 @@
     let body = document.querySelector('body');
     let audio = document.querySelector('#audio');
     btn.onclick = async function(){
-        let status=0;
+        
         if(body.classList.toggle('on')){
             let data = {
                 status:1
             }
-            console.log(data);
-
-            const res = await fetch("http://localhost/remote-lamp-control-/backend/check_status.php", {
+            fetch("http://iot.benax.rw/projects/854b1fa5b3856cdadd4351ef6bb6c81a/Glowify/check_status.php", {
                 method: "POST",
-                body: JSON.stringify(data),
+                body: JSON.stringify(data.status),
                 headers: {
-                    "Access-Control-Allow-Origin": "http://localhost",
+                    "Access-Control-Allow-Origin": "http://iot.benax.rw",
+                    "Content-Type": "application/json; charset=UTF-8"
+                }
+                }).then(data => {
+                    console.log("data",data)
+                })
+        //     }
+        }else{
+            let data = {
+                status:0
+            }
+            // make the request
+            const res = await fetch("http://iot.benax.rw/projects/854b1fa5b3856cdadd4351ef6bb6c81a/Glowify/check_status.php", {
+                method: "POST",
+                body: JSON.stringify(data.status),
+                headers: {
+                    "Access-Control-Allow-Origin": "http://iot.benax.rw",
                     "Content-Type": "application/json; charset=UTF-8"
                 }
                 })
-                console.log("Turned on")
-                console.log("the statussss"+res.body)
-        //     }
-        }else{
-            status=0
-            console.log(status)
-        }
-        //     // make the request
-        //     const res = await fetch("http://localhost/remote-lamp-control-/backend/check_status.php", {
-        //         method: "POST",
-        //         body: status,
-        //         headers: {
-        //             "Access-Control-Allow-Origin": "http://localhost",
-        //             "Content-Type": "application/json; charset=UTF-8"
-        //         }
-        //         })
-        //         .then((response)=>{
-        //             console.log(response)
-        //             return response
-        //         })
+                .then((response)=>{
+                    console.log(response)
+                    return response
+                })
                 
-        //     }
-        //     else{
-        //         const data = {
-        //             status:0
-        //         }
-        //         const res = await fetch("http://localhost/remote-lamp-control-/backend/check_status.php", {
-        //             method: "POST",
-        //             body: data,
-        //             headers: {
-        //                 "Access-Control-Allow-Origin": "http://localhost",
-        //                 "Content-Type": "application/json; charset=UTF-8"
-        //             }
-        //             }).then((response)=>{
-        //             console.log(response)
-        //             return response
-        //         })
-                    
-        //         // console.log(res);
-        //     }
+            }
     }
 </script>
 </body>
