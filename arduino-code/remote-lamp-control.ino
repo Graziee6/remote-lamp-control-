@@ -14,25 +14,9 @@ void setup() {
 }
 
 void loop() { 
-  // turnOn();
-  // turnOff();
   String payload="";
     connectToHost(80);
-    processResponse();
-  // if( turnOff() || turnOn()){
-  //   int value;
-  //   if(turnOff()){
-  //     value=0;
-  //   }else{
-  //     value=1;
-  //   }
-  //  payload = "status=" + value; 
-  //     upload(payload, "/projects/854b1fa5b3856cdadd4351ef6bb6c81a/Glowify/check_status.php");
-  //   }
-  //   else{
-  //     Serial.println("Sensor reading failed.");
-  //   }
-  //   delay(10000);  
+    processResponse(); 
 }
 
 void processResponse(){
@@ -57,14 +41,11 @@ void checkBrightness(){
   if (brightnessValue < 10) {
     Serial.println("OFF");
     status="OFF";
-    // return 0;
   } else if (brightnessValue>10) {
     Serial.println("ON");
     status="ON";
-    // return 1;
   } else {
     Serial.println("The sensor got us no value");
-    //  return -1;
   }
   Serial.print("Analog reading: ");
   Serial.println(brightnessValue);
