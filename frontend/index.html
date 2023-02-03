@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
     <title>Lamp Project</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -32,11 +34,11 @@
             }
             console.log(data);
 
-            const res = await fetch("http://localhost/remote-lamp-control-/backend/check_status.php", {
+            const res = await fetch("http://iot.benax.rw/projects/854b1fa5b3856cdadd4351ef6bb6c81a/Glowify/check_status.php", {
                 method: "POST",
                 body: JSON.stringify(data),
                 headers: {
-                    "Access-Control-Allow-Origin": "http://localhost",
+                    "Access-Control-Allow-Origin": "http://iot.benax.rw",
                     "Content-Type": "application/json; charset=UTF-8"
                 }
                 })
@@ -48,11 +50,11 @@
             console.log(status)
         }
         //     // make the request
-        //     const res = await fetch("http://localhost/remote-lamp-control-/backend/check_status.php", {
+        //     const res = await fetch("http://localhost:8080/remote-lamp-control-/backend/check_status.php", {
         //         method: "POST",
         //         body: status,
         //         headers: {
-        //             "Access-Control-Allow-Origin": "http://localhost",
+        //             "Access-Control-Allow-Origin": "http://localhost:8080",
         //             "Content-Type": "application/json; charset=UTF-8"
         //         }
         //         })
